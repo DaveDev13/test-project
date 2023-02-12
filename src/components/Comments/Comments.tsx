@@ -22,7 +22,7 @@ export const Comments = observer(() => {
     // Если комментарии ещё не загружены, то показать кнопку
     if (!commentsLoaded) {
         return (
-            <Button variant="contained" onClick={handleFirstCommentsList}>
+            <Button size="large" variant="contained" color="secondary" onClick={handleFirstCommentsList}>
                 Загрузить комментарии
             </Button>
         );
@@ -36,7 +36,7 @@ export const Comments = observer(() => {
     return (
         <>
             {
-                // если первые комментарии загружены
+                // Если первые комментарии загружены
                 postsCommentsList.length ? (
                     <>
                         <Typography variant="h5">Комментарии:</Typography>
@@ -44,13 +44,13 @@ export const Comments = observer(() => {
                         <CommentsList />
 
                         {pagination.hasNextPage && (
-                            <Button variant="contained" sx={{ mt: 2 }} onClick={handleCommentsLoad}>
+                            <Button size="large" color="secondary" variant="contained" sx={{ mt: 2 }} onClick={handleCommentsLoad}>
                                 {isLoading ? "Загрузка..." : "Загрузить ещё"}
                             </Button>
                         )}
                     </>
                 ) : (
-                    // если комментарии не найдены
+                    // Если комментарии не найдены
                     <Typography variant="h5">Комментарии отсутствуют</Typography>
                 )
             }

@@ -21,7 +21,7 @@ class UsersApi {
                 Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
             },
         })
-            .then((result: any): UserStructure[] => {
+            .then((result): UserStructure[] => {
                 return result.data;
             })
             .catch((error) => {
@@ -37,7 +37,7 @@ class UsersApi {
                 Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
             },
         })
-            .then((result: any): UserStructure => {
+            .then((result): UserStructure => {
                 return result.data;
             })
             .catch((e) => {
@@ -53,7 +53,7 @@ class UsersApi {
                 Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
             },
         })
-            .then((result: any): PostStructure[] => {
+            .then((result): PostStructure[] => {
                 return result.data;
             })
             .catch((e) => {

@@ -24,7 +24,7 @@ class PostsApi {
                 Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
             },
         })
-            .then((result: any): PostStructure => {
+            .then((result): PostStructure => {
                 return result.data;
             })
             .catch((e) => {
@@ -40,7 +40,7 @@ class PostsApi {
                 Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
             },
         })
-            .then((result: any): PostCommentsStructure[] => {
+            .then((result): PostCommentsStructure[] => {
                 return result.data;
             })
             .catch((e) => {

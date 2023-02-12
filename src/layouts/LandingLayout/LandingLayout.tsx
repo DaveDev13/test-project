@@ -13,8 +13,9 @@ const LandingLayout = observer(() => {
     const breakpoint = useBreakpoint();
     const [show, setShow] = useState(["xs", "sm"].includes(breakpoint));
     const [open, setOpen] = useState(!["xs", "sm"].includes(breakpoint));
+
     const toggleDrawer = () => {
-        setOpen(!open);
+        setOpen(prev => !prev);
     };
 
     useEffect(() => {
@@ -103,6 +104,7 @@ const LandingLayout = observer(() => {
                     flexGrow: 1,
                     minHeight: "var(--vh)",
                     padding: 3,
+                    backgroundColor: "#f3f6f9"
                 }}
             >
                 {show && <Toolbar />}

@@ -32,13 +32,13 @@ export const UserId = observer(() => {
             {currentUser?.name ? (
                 <>
                     <BackLink url="/users" />
-                    <Typography mb={2} variant="h1">
+                    <Typography mb={4} variant="h1">
                         {currentUser.name}
                     </Typography>
 
                     {postsList.length && !postLoading ? (
                         <>
-                            <Typography variant="h5">Посты:</Typography>
+                            <Typography mb={2} variant="h5">Посты:</Typography>
 
                             <PostsList />
                         </>

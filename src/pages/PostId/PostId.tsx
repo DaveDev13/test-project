@@ -26,7 +26,7 @@ export const PostId = observer(() => {
                 <>
                     <BackLink url={`/users/${currentPost.user_id}`} />
 
-                    <Typography mb={3} variant="h2" component="h1">
+                    <Typography mb={4} variant="h2" component="h1">
                         {currentPost?.title}
                     </Typography>
 

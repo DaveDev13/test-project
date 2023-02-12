@@ -27,17 +27,17 @@ export const Users = observer(() => {
         <Box>
             {usersList.length ? (
                 <>
-                    <Typography mb={2} variant="h1">
+                    <Typography mb={4} variant="h1">
                         Список {activeUsers ? "активных" : "всех"} пользователей
                     </Typography>
 
-                    <Button variant="outlined" onClick={handleChangeStatus}>
+                    <Button size="large" sx={{ mb: 3 }} variant="outlined" onClick={handleChangeStatus}>
                         {activeUsers ? "Показать всех" : "Показать только активных"}
                     </Button>
 
                     <UsersList />
 
-                    <Button sx={{ mt: 2 }} variant="contained" color="secondary" onClick={handleLoadUsers}>
+                    <Button size="large" sx={{ mt: 3 }} variant="contained" color="secondary" onClick={handleLoadUsers}>
                         {isLoading ? "Загрузка..." : "Загрузить ещё"}
                     </Button>
                 </>

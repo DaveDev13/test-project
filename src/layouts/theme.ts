@@ -1,25 +1,7 @@
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
 import "@fontsource/roboto";
 
 export const defaultTheme = createTheme({
-    palette: {
-        primary: {
-            main: "rgba(9, 41, 156, 1)",
-            dark: "rgba(5, 20, 75)",
-            light: "rgba(5, 20, 75, 0.64)",
-            contrastText: "rgba(255, 255, 255, 1)",
-        },
-        secondary: {
-            main: "rgba(0, 185, 255, 1)",
-        },
-        action: {
-            disabled: "rgba(175, 180, 197, 1)",
-        },
-        error: {
-            main: "rgba(244, 67, 54, 1)",
-        },
-    },
     breakpoints: {
         values: {
             xs: 0,
@@ -33,14 +15,8 @@ export const defaultTheme = createTheme({
 // A custom theme for this app
 const theme = createTheme({
     palette: {
-        primary: {
-            main: "#556cd6",
-        },
         secondary: {
             main: "#19857b",
-        },
-        error: {
-            main: red.A400,
         },
     },
     typography: {
@@ -106,7 +82,14 @@ const theme = createTheme({
                 lineHeight: "14px",
             },
         },
-        button: { fontWeight: "600" as "bold", fontSize: "16px", lineHeight: "16px", letterSpacing: "-0.02em", textTransform: "none" },
+        button: {
+            padding: "12px 18px",
+            fontWeight: "600" as "bold",
+            fontSize: "16px",
+            lineHeight: "16px",
+            letterSpacing: "-0.02em",
+            textTransform: "none",
+        },
     },
 });
 

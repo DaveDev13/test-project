@@ -13,7 +13,7 @@ export const BackLink = ({url}: IBackLink) => {
             alignItems: "center",
             mb: 4,
         }}>
-            <Button component="span" color="secondary">
+            <Button component="span">
                 <ArrowIcon style={{
                     width: "24px",
                 }} /> Назад
