@@ -27,15 +27,11 @@ export const UserId: FC = observer(() => {
     const { currentUser, postsList, clearUserData, getUserData, getUserPostsList } = userStore;
 
     useEffect(() => {
-        if (id !== currentUser.id) {
-            clearUserData();
-        }
-
         getUserData(id);
         getUserPostsList(id);
 
         return () => {
-            // clearUserData();
+            clearUserData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

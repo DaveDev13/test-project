@@ -26,7 +26,9 @@ export const Users: FC = observer(() => {
     const {usersList, activeUsers, changeUserStatus, getUsersList, pagination, isLoading} = userStore;
 
     useEffect(() => {
-        getUsersList(1);
+        if (!usersList.length) {
+            getUsersList(1);
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
