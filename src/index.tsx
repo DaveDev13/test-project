@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./layouts/theme";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop";
 import "./assets/styles/index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);

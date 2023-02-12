@@ -1,13 +1,12 @@
-import { Typography } from "@mui/material";
+import { Typography, Link as LinkMui, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import style from "./home.module.scss";
 
 export const Home = () => {
     return (
-        <main className={style.main}>
+        <Box component="main">
             <Typography mb={3} variant="h1">Главная страница</Typography>
 
-            <Typography variant="body1">Для отображения пользователей <Link to="/users" className={style.link}>перейти к списку</Link></Typography>
-        </main>
+            <Typography>Для отображения пользователей <LinkMui component={Link} to="/users">перейти к списку</LinkMui></Typography>
+        </Box>
     );
 };

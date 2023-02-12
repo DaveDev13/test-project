@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import LandingLayout from "./layouts/Landing/Landing";
+import LandingLayout from "./layouts/LandingLayout/LandingLayout";
 import { Home } from "./pages/Home/Home";
 import { Users } from "./pages/Users/Users";
 import { UserId } from "./pages/UserId/UserId";

@@ -18,8 +18,17 @@ export class PostStore {
         makeAutoObservable(this);
     }
 
+    // Очищаем данные о посте
     clearPostData = () => {
         this.currentPost = {} as PostStructure;
+    }
+
+    // Очищаем список комментариев + очищаем пагинацию
+    clearPostCommentsData = () => {
+        this.postsCommentsList = [];
+        this.pageNumber = 1;
+        this.pagination.currentPage = 1;
+        this.pagination.hasNextPage = true;
     }
 
     // Получаем инфо о посте через апи

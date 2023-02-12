@@ -20,10 +20,17 @@ export class UserStore {
         makeAutoObservable(this);
     }
 
+    // Очищаем данные о юзере
     clearUserData = () => {
         this.currentUser = {} as UserStructure;
     }
 
+    // Очищаем данные о постах юзера
+    clearUserPostsData = () => {
+        this.postsList = [];
+    }
+
+    // Изменяем статус отображаемых пользователей
     changeUserStatus = () => {
         this.activeUsers = !this.activeUsers;
     }

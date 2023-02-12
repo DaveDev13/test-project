@@ -1,28 +1,11 @@
-import { FC, Fragment, useEffect, useState } from "react";
-import { Avatar, Box, Divider, List, ListItemButton, ListItemAvatar, ListItemText, Typography, Button } from "@mui/material";
-import style from "./users.module.scss";
-import { Link } from "react-router-dom";
-import  { UserStructure } from "../../data/users/UsersApi";
+import { useEffect } from "react";
+import { Box, Typography, Button } from "@mui/material";
 import { observer } from "mobx-react";
 import userStore from "../../stores/UserStore";
+import { UsersList } from "../../components/User/UsersList";
 
-interface IUser {
-    data: UserStructure;
-}
 
-const UserCard: FC<IUser> = ({ data }) => {
-    return (
-        <ListItemButton>
-            <ListItemAvatar>
-                <Avatar alt={data.name} />
-            </ListItemAvatar>
-            <ListItemText primary={data.name} />
-            <Link to={`/users/${data.id}`} className={style.card__link}></Link>
-        </ListItemButton>
-    );
-};
-
-export const Users: FC = observer(() => {
+export const Users = observer(() => {
     const {usersList, activeUsers, changeUserStatus, getUsersList, pagination, isLoading} = userStore;
 
     useEffect(() => {
@@ -42,32 +25,19 @@ export const Users: FC = observer(() => {
 
     return (
         <Box>
-            {usersList?.length ? (
+            {usersList.length ? (
                 <>
                     <Typography mb={2} variant="h1">
                         Список {activeUsers ? "активных" : "всех"} пользователей
                     </Typography>
 
                     <Button variant="outlined" onClick={handleChangeStatus}>
-                        {!activeUsers ? "Показать только активных" : "Показать всех"}
+                        {activeUsers ? "Показать всех" : "Показать только активных"}
                     </Button>
 
-                    <List sx={{ width: "100%" }}>
-                        {usersList.map((data) => {
-                            if (activeUsers && data.status === "inactive") {
-                                return <Fragment key={data.id}></Fragment>;
-                            }
+                    <UsersList />
 
-                            return (
-                                <Fragment key={data.id}>
-                                    <UserCard data={data} />
-                                    <Divider component="li" />
-                                </Fragment>
-                            );
-                        })}
-                    </List>
-
-                    <Button sx={{ marginTop: 2 }} variant="outlined" onClick={handleLoadUsers}>
+                    <Button sx={{ mt: 2 }} variant="contained" color="secondary" onClick={handleLoadUsers}>
                         {isLoading ? "Загрузка..." : "Загрузить ещё"}
                     </Button>
                 </>
