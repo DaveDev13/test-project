@@ -1,0 +1,11 @@
+.main {
+    overflow: hidden;
+}
+
+.link {
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}

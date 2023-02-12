@@ -1,0 +1,14 @@
+@import "./breakpoints";
+
+.container {
+    margin: 0 auto;
+    padding: 0 var(--gap);
+    width: 100%;
+    max-width: calc(var(--container-width) + var(--gap) * 2);
+    box-sizing: border-box;
+}
+
+.container-lg {
+    @extend .container;
+    --container-width: 100%;
+}

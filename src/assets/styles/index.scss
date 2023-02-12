@@ -1,0 +1,314 @@
+@import "normalize.css/normalize";
+
+// settings
+@import "settings/variables";
+@import "settings/colors";
+
+// mixins
+@import "mixins/index";
+
+@import "base/fonts";
+@import "base/responsive";
+
+:root {
+    --vh: 100vh;
+    --container-width: 1036px;
+    --width-base: #{$laptop};
+    --width-current: #{$laptop} * 1px;
+    --width-multiplier: var(--width-current) / var(--width-base);
+    --font-family-base: "Roboto";
+
+    @include laptop {
+        --width-current: 100vw;
+    }
+
+    @include devices {
+        --width-base: #{$mobile};
+        --width-current: 100vmin;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+// Не вызывает performance issues https://stackoverflow.com/questions/37444066/is-applying-a-css-transition-on-all-elements-a-performance-concern
+// Исключения добавляются через :not()
+html {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-family: var(--font-family-base);
+    font-style: normal;
+    font-weight: 400;
+    font-size: px(14);
+    line-height: px(18);
+    scroll-behavior: smooth;
+
+    &.cursor-hide,
+    &.cursor-hide * {
+        // stylelint-disable-next-line
+        cursor: none !important;
+    }
+
+    &.has-lock-scroll,
+    &.is-lock-scroll,
+    &.has-lock-scroll body,
+    &.is-lock-scroll body {
+        overflow: hidden;
+    }
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-decoration-skip: objects;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+}
+
+#root {
+    position: relative;
+    overflow: hidden;
+}
+
+main {
+    flex: 1;
+}
+
+p {
+    margin: 0;
+}
+
+a,
+button {
+    outline: none;
+    transition: $trans-def;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+svg {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+figure,
+picture {
+    display: inline-block;
+    margin: 0;
+    line-height: 0;
+
+    img {
+        width: 100%;
+        transform: translateZ(0);
+    }
+}
+
+img {
+    vertical-align: top;
+    max-width: 100%;
+    transform: translateZ(0);
+    user-select: none;
+}
+
+img[draggable="false"] {
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+fieldset {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+video {
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+iframe {
+    display: block;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+}
+
+.transition-def {
+    transition: $trans-def;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    text-align: center;
+    color: $color-light;
+    background-color: transparent;
+    transition: $trans-def;
+    user-select: none;
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        color: currentColor;
+        transform: translateZ(0);
+    }
+}
+
+html.has-scroll-smooth {
+    overflow: hidden;
+}
+
+html.has-scroll-dragging {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.has-scroll-smooth body {
+    overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+    height: 100vh;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    height: 100%;
+}
+
+@include desktop {
+    [data-scroll],
+    [data-scroll-section] {
+        backface-visibility: hidden;
+        will-change: transform, opacity;
+        transform: translateZ(0);
+    }
+
+    [data-scroll-container] {
+        perspective: 999999px !important;
+    }
+
+    [data-scroll-container],
+    [data-scroll-section] {
+        transform-style: preserve-3d;
+        will-change: transform;
+    }
+}
+
+.c-scrollbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    width: 11px;
+    height: 100%;
+    height: var(--vh);
+    transform-origin: center right;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+}
+
+.c-scrollbar:hover {
+    transform: scaleX(1.45);
+}
+
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+    opacity: 1;
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar {
+    width: 100%;
+    height: 10px;
+    top: auto;
+    bottom: 0;
+    transform: scaleY(1);
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+    transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.5;
+    width: 7px;
+    border-radius: 10px;
+    margin: 2px;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+    right: auto;
+    bottom: 0;
+}

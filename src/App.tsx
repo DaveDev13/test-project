@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import LandingLayout from "./layouts/Landing/Landing";
+import { Home } from "./pages/Home/Home";
+import { Users } from "./pages/Users/Users";
+import { UserId } from "./pages/UserId/UserId";
+import { PostId } from "./pages/PostId/PostId";
+
+// api config
+import "./data/settings/axios";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    useEffect(() => {
+        const appHeight = () => {
+            const doc = document.documentElement;
+            doc.style.setProperty('--vh', `${window.innerHeight}px`);
+        };
+
+        window.addEventListener('resize', appHeight);
+
+        appHeight();
+
+        return () => {
+            window.removeEventListener('resize', appHeight);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+        <Routes>
+            <Route element={ <LandingLayout /> }>
+                <Route index element={<Home />} />
+                    <Route path={"users"} element={ <Users /> } />
+                    <Route path={"users/:id"} element={ <UserId /> } />
+                    <Route path={"posts/:id"} element={ <PostId /> } />
+            </Route>
+        </Routes>
+    );
 }
 
 export default App;
